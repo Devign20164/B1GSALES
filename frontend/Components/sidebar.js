@@ -37,3 +37,24 @@ function adjustHomeSection() {
 
 // Ensure Home Section Matches Sidebar State on Load
 adjustHomeSection();
+
+  // Get the current page URL
+  const currentPage = window.location.pathname;
+
+  // Mapping of page URLs to link IDs
+  const pages = {
+    "/Pages/Dashboard/AdminDashboard.html": "dashboard-link",
+    "/Pages/Agents/AdminAgent.html": "agents-link",
+    "/Pages/Order/AdminOrder.html": "order-link",
+    "/Pages/Client/AdminClient.html": "clients-link",
+    "/Pages/Settings/AdminSettings.html": "settings-link",
+  };
+
+  // Set active state
+  if (pages[currentPage]) {
+    let activeLink = document.getElementById(pages[currentPage]);
+    if (activeLink) {
+      activeLink.classList.add("active");
+      activeLink.style.pointerEvents = "none"; // Disable clicking
+    }
+  }
