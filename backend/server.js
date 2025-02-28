@@ -12,9 +12,17 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "../frontend")));
 
 // ✅ Redirect root `/` to `AdminDashboard.html`
+<<<<<<< HEAD
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/Pages/Dashboard/AdminDashboard.html"));
 });
 
+=======
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/Pages/Login/Login.html'));
+});
+
+
+>>>>>>> e5352ec90b010ce2e82fa90a914aa5a819fdcbeb
 // ✅ Start Database & Server
 connectDB(app, PORT);
