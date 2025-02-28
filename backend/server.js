@@ -1,16 +1,20 @@
-const express = require('express');
-const path = require('path');
+const express = require("express");
+const path = require("path");
+const connectDB = require("./config/config");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 5000;
 
-// Serve frontend static files
-app.use(express.static(path.join(__dirname, '../frontend')));
+// Middleware
+app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/Pages/Dashboard/AdminDashboard.html'));
+// ✅ Serve static files from the "frontend" directory
+app.use(express.static(path.join(__dirname, "../frontend")));
+
+// ✅ Redirect root `/` to `AdminDashboard.html`
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/Pages/Dashboard/AdminDashboard.html"));
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+// ✅ Start Database & Server
+connectDB(app, PORT);
